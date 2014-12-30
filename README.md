@@ -8,8 +8,12 @@ Requirements
 ========
 
 flickrapi Beej's Python Flickr API (http://stuvel.eu/media/flickrapi-docs/documentation/)
+
 json
+
 scipy
+
 numpy
+
 skimage
 
