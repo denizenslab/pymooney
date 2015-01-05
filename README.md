@@ -1,19 +1,28 @@
 pymooney
 ========
 
-This repository helds the python scripts to generate twotone, Mooney images. You can use search words that will be used to search images with these search words in online image databases and the Mooney images will be generated based on these images. Or you can give a path with images.
+This repository helds the python scripts to generate twotone, Mooney images. The main code is crmooney.py. 
+
+You can 
+
+(i) use search words that will be used to search images with these search words in online image databases and the Mooney images will be generated based on these images. (API key and secret are required). 
+
+(ii) you can give a directory with images
+
+(iii) you can give one image paath
 
 
 Requirements
 ========
 
-flickrapi Beej's Python Flickr API (http://stuvel.eu/media/flickrapi-docs/documentation/)
+* flickrapi [Beej's Python Flickr API](http://stuvel.eu/media/flickrapi-docs/documentation/)
 
-json
+(You need a Flickr API key and secret if you want to make use of the image search. Check [here](https://www.flickr.com/services/api) for more information.)
 
-scipy
+* json
 
-numpy
+* scipy
 
-skimage
+* numpy
 
+* skimage
