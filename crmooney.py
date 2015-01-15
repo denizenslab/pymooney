@@ -1,9 +1,15 @@
+#!/usr/bin/env python
+
 import os
 import sys
 
 import utils
 import utils_flickr
 import utils_image
+
+__author__ = 'Fatma Imamoglu'
+__email__ = 'fatma@berkeley.edu'
+__status__ = 'Development'
 
 def crmooney_fromdb(api_key, api_secret, search_words, imagepath='', mooneypath='', dbname='flickr', search_tags=[], 
     license='2', size='original', content_type=1, media='photos', sort='relevance', pages_to_get=[1,2], per_page=50, 
@@ -162,6 +168,7 @@ def crmooney_frompath(filename, mooneypath='', resize=0, smooth_sigma=6, image_s
     return imgs_mooney
 
 if __name__ == '__main__':
+
 
     ## Use search words to search images in Flickr image database
     try:
