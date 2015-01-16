@@ -14,6 +14,22 @@ __status__ = 'Development'
 def crmooney_fromdb(api_key, api_secret, search_words, imagepath='', mooneypath='', dbname='flickr', search_tags=[], 
     license='2', size='original', content_type=1, media='photos', sort='relevance', pages_to_get=[1,2], per_page=50, 
     resize=0, smooth_sigma=6, image_size=(400,400), threshold_method='global_otsu'):
+    """ Given an API key and secret, and search words, download images from image db, create Mooney imagse and save Mooney images in the directory specified with 
+        mooneypath.
+
+    Input:
+        api_key: API key of the online image database.
+        api_secret: API secret of the online image database.
+        search_words: A list of search words. These words will be used in the specified image database as search words.
+        imagepath: Path where the downloaded images should be saved.
+        mooneypath: Path where the Mooney images should be saved.
+        dbname: Online image database identifier. Default: 'flickr' (others to be implemented.)
+        search_tags: Similar to search words. Could be used to further resitrict the search results.
+        license: String of numbers. (check: utils_flickr.get_license_info())
+
+    Returns:
+        imgs_mooney: A dictionary of Mooney images along with the threshold value, its original path and original image name.
+    """
 
     if imagepath == '':
         imagepath = os.getcwd()
