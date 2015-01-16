@@ -11,7 +11,7 @@ You can
 
 (iii) you can give one image paath
 
-The easiest way to use these scripts is to check the main-function in crmooney.py.
+The easiest way to use these scripts is to check the main-function in crmooney.py and write a wrapper funciton based on that.
 
 
 Requirements
