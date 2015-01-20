@@ -60,7 +60,7 @@ def rename_imgs(path):
     """
 
 def resize_img(img, size=(400, 400), interp='bilinear', mode='None'):
-    return scipy.misc.imresize(img)
+    return scipy.misc.imresize(img, size, interp, mode)
 
 
 def rgb2gray(img):
@@ -69,7 +69,7 @@ def rgb2gray(img):
     img = 0.299 R + 0.587 G + 0.114 B
     """
     print 'Convert RGB image to gray scale.'
-    return np.uint8(np.dot(img[...,:3], [0.299, 0.587, 0.144]))
+    return np.uint8(np.dot(img[...,:3], [0.299, 0.587, 0.114]))
 
 def gauss_filter(img, sigma=4, mode='nearest'):
     print 'Smooth image using a Gaussian kernel sigma {}'.format(sigma)
