@@ -28,3 +28,11 @@ Requirements
 * numpy
 
 * skimage
+* 
+
+Citation
+========
+
+Please cite our Neuroimage paper if you use this package to create Mooney images.
+
+[Fatma Imamoglu, Thorsten Kahnt, Christof Koch, John-Dylan Haynes, Changes in functional connectivity support conscious object recognition, NeuroImage, Volume 63, Issue 4, December 2012, Pages 1909–1917](http://www.sciencedirect.com/science/article/pii/S1053811912007860)
