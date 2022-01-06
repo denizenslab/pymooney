@@ -1,0 +1,52 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-docstring-first
+    -   id: fix-encoding-pragma
+    -   id: check-ast
+    -   id: requirements-txt-fixer
+    -   id: check-case-conflict
+
+-   repo: https://github.com/psf/black
+    rev: 19.3b0
+    hooks:
+    -   id: black
+
+-   repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.6.0
+    hooks:
+    -   id: reorder-python-imports
+
+- repo: https://github.com/hadialqattan/pycln
+  rev: v1.0.3 # Possible releases: https://github.com/hadialqattan/pycln/releases
+  hooks:
+    - id: pycln
+
+- repo: https://github.com/myint/docformatter
+  rev: v1.3.1
+  hooks:
+    - id: docformatter
+      args: [--in-place]
+
+- repo: https://github.com/Yelp/detect-secrets
+  rev: v1.1.0
+  hooks:
+  - id: detect-secrets
+    name: Detect secrets
+    description: Detects high entropy strings that are likely to be passwords.
+    entry: detect-secrets-hook
+    #language: python
+    # for backward compatibility
+    files: .*
+
+- repo: local
+  hooks:
+    - id: pylint
+      name: pylint
+      entry: pylint
+      language: system
+      types: [python]
+      args: [--fail-under=7.5]
