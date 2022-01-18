@@ -1,0 +1,8 @@
+flickrapi
+numpy
+pillow
+pre-commit
+pylint
+python-dotenv
+scikit-image
+scipy
