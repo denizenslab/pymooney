@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from pathlib import Path
 
 import numpy as np
 from matplotlib.pyplot import imread
@@ -12,14 +13,34 @@ from skimage.filters import threshold_otsu
 from skimage.morphology import disk
 
 
+def mkdir(folderpath):
+    """Creates a folder for the specified 'folderpath'.
+
+    Input:
+        folderpath: string path
+
+    Raises:
+        ValueError: If 'folderpath' can not be created due to PermissionError
+    """
+
+    path = Path(folderpath)
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+    except PermissionError as error:
+        raise ValueError(
+            f"Please adapt permissions to create {folderpath} or choose a different directory."
+        ) from error
+
+
 def load_imgs(path):
     """Given a path load image(s). The input path can either be (i) a directory
     in which case all the JPG-images will be loaded into a dictionary, or (ii)
     an image file.
 
     Returns:
-    imgs: A dictionary of of n-dim images. Keys are the original filenames
+        imgs: A dictionary of of n-dim images. Keys are the original filenames
     """
+
     ## Get filenames
     filenames = []
     if os.path.isdir(path):
@@ -45,27 +66,8 @@ def load_imgs(path):
 def save_img(img, filename):
     """Given a numpy array image save image under filename."""
 
-    if os.path.dirname(filename) == "":
-        path = os.getcwd()
-    else:
-        path = os.path.dirname(filename)
-
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    filename = os.path.join(path, filename)
+    mkdir(os.path.dirname(filename))
     imsave(filename, img)
-
-
-def rename_imgs(path):
-    """Given a path rename image(s). The input path can either be (i) a
-    directory in which case all the JPG-images will be loaded into a
-    dictionary, or (ii) an image file.
-
-    The filename, the original file id and other metadata will be stored
-    into a text file in the same directory.
-    """
-    pass
 
 
 def resize_img(img, size=(400, 400), resample=Image.BILINEAR):
@@ -78,6 +80,7 @@ def rgb2gray(img):
     Based on http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
     img = 0.299 R + 0.587 G + 0.114 B
     """
+
     print("Convert RGB image to gray scale.")
     return np.uint8(np.dot(img[..., :3], [0.299, 0.587, 0.114]))
 
@@ -93,21 +96,23 @@ def median_filter(img, size=4):
 
 
 def threshold_img(img, method="global_otsu", radius=50):
-    """ Given a gray scale image return a thresholded binary image using Otsu's thresholding method.
-    img: A gray scale numpy array.
-    method:
-      - 'global_otsu' computes a global threshold  value for the whole image and uses this to binarize the
-      input image. (default)
-      - 'local_otsu' computes a local threshols value for each pixel (threshold is computed within a neighborhood of a radius).
+    """Given a gray scale image return a thresholded binary image using Otsu's
+    thresholding method.
 
-    radius: The 2D neighborhood to compute local thresholds in local_otsu method
+    Input:
+        img: A gray scale numpy array.
+        method:
+          - 'global_otsu' computes a global threshold value for the whole image and
+            uses this to binarize the input image. (default)
+          - 'local_otsu' computes a local threshols value for each pixel
+            (threshold is computed within a neighborhood of a radius).
+        radius: The 2D neighborhood to compute local thresholds in local_otsu method
 
     Returns:
-
-    img_binary: A binary image (same size as input img).
-    threshold: Threshold value used to binarize the image.
-
+        img_binary: A binary image (same size as input img).
+        threshold: Threshold value used to binarize the image.
     """
+
     if len(img.shape) > 2:
         img = rgb2gray(img)
 
